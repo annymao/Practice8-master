@@ -36,7 +36,7 @@ public class Main extends PApplet {
     public void setup() {
         //song
         minim = new Minim(this);
-        song = minim.loadFile(this.getClass().getResource("res/background.wav").getPath());
+        song = minim.loadFile(this.getClass().getResource("res/OP.wav").getPath());
 
         song.play();
         img = loadImage("data/pokeball.png");
