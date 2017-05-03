@@ -1,3 +1,4 @@
+import ddf.minim.AudioPlayer;
 import ddf.minim.Minim;
 import de.looksgood.ani.Ani;
 import processing.core.PApplet;
@@ -13,6 +14,8 @@ public class Main extends PApplet {
     public static void main(String[] args) {
         PApplet.main("Main", args);
     }
+    Minim minim;
+    AudioPlayer song;
     int num;
     public ArrayList<Ball> balls = new ArrayList<>();
     PImage img;
@@ -31,6 +34,11 @@ public class Main extends PApplet {
     public ArrayList<PImage> imgList=new ArrayList<>();
     @Override
     public void setup() {
+        //song
+        minim = new Minim(this);
+        song = minim.loadFile(this.getClass().getResource("res/background.wav").getPath());
+
+        song.play();
         img = loadImage("data/pokeball.png");
         imgch = loadImage("data/chanyeol.png");
         imgpk = loadImage("data/pika.png");
@@ -128,7 +136,8 @@ public class Main extends PApplet {
                 Ani.to(compareBalls.get(1), 2,"radius",0);
                 if(compareBalls.get(0).getImg()==imghc)// if the picture is haochuan you can get 50 points
                     score=score+50;
-                score=score+5;
+                else
+                    score=score+5;
                 matchPair++;
                 compareBalls.clear();//clean the compare array
             }
@@ -153,7 +162,7 @@ public class Main extends PApplet {
         {
             if(b.checkMouseClicked())
             {
-                if(gameStart==true)//only if game start you can play the game
+                if(gameStart==true&&(compareBalls.size()==0||(compareBalls.size()==1&&b!=compareBalls.get(0))))//only if game start you can play the game
                     compareBalls.add(b);
                 if(compareBalls.size()==2)//start the count time of the picture show
                     countStart=millis();
@@ -168,6 +177,14 @@ public class Main extends PApplet {
         {
             gameStart=true;
             gameStartTime=millis();
+        }
+        else if(key=='1')
+        {
+            song.pause();//song pause
+        }
+        else if(key=='2')
+        {
+            song.play();//song play
         }
     }
     @Override

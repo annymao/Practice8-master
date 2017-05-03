@@ -11,5 +11,27 @@
     <orderEntry type="library" name="controlP5" level="project" />
     <orderEntry type="library" name="minim" level="project" />
     <orderEntry type="library" name="Ani" level="project" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../../minim-2.2.2/minim/library/jsminim.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../../../minim-2.2.2/minim/library" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/../../../minim-2.2.2/minim/library" />
+        </SOURCES>
+        <jarDirectory url="file://$MODULE_DIR$/../../../minim-2.2.2/minim/library" recursive="false" />
+        <jarDirectory url="file://$MODULE_DIR$/../../../minim-2.2.2/minim/library" recursive="false" type="SOURCES" />
+      </library>
+    </orderEntry>
   </component>
 </module>
