@@ -80,6 +80,7 @@ public class Main extends PApplet {
         text("Timer:",550,40);
         text(score,100,40);
         if(gameStart) {
+            //start to count down when game start
             timeCountdown=(int)(30-(millis()-gameStartTime)/1000);//start count down from 30
             text(timeCountdown,650,40);
 
@@ -90,7 +91,7 @@ public class Main extends PApplet {
                 gameStart = false;
                 text("YOU WIN!!!",280,240);
         }
-        else if(timeCountdown==0)
+        else if(timeCountdown==0)//time is up
         {
             gameStart=false;
             text("Time's OUT",270,200);
@@ -100,7 +101,7 @@ public class Main extends PApplet {
         {
             for (Ball b : balls) {
                 //physics calculation
-                if(gameStart)
+                if(gameStart)//only when gamestart the ball start to move
                 {
                     b.update();
                     b.checkBoundaryCollision();
@@ -109,7 +110,7 @@ public class Main extends PApplet {
                 //draw ball
                 b.display();
                 imageMode(CENTER);
-                if(b.imgShow==false)
+                if(b.imgShow==false)//if the img in the balls doesn't show
                     image(img,b.position.x,b.position.y,95,95);
                 else
                     image(b.getImg(),b.position.x,b.position.y,b.imgWidth,b.imgHeight);
@@ -134,10 +135,10 @@ public class Main extends PApplet {
                 Ani.to(compareBalls.get(1), (float)1.5,"imgWidth",0);
                 Ani.to(compareBalls.get(0), 2, "radius", 0);
                 Ani.to(compareBalls.get(1), 2,"radius",0);
-                if(compareBalls.get(0).getImg()==imghc)// if the picture is haochuan you can get 50 points
-                    score=score+50;
+                if(compareBalls.get(0).getImg()==imghc)// if the picture is haochuan you can get 40 points
+                    score=score+40;
                 else
-                    score=score+5;
+                    score=score+10;
                 matchPair++;
                 compareBalls.clear();//clean the compare array
             }
@@ -162,6 +163,7 @@ public class Main extends PApplet {
         {
             if(b.checkMouseClicked())
             {
+                //if clicked add the ball to the compareBallList
                 if(gameStart==true&&(compareBalls.size()==0||(compareBalls.size()==1&&b!=compareBalls.get(0))))//only if game start you can play the game
                     compareBalls.add(b);
                 if(compareBalls.size()==2)//start the count time of the picture show
@@ -173,16 +175,16 @@ public class Main extends PApplet {
     @Override
     public void keyPressed()
     {
-        if(key=='s')//press s to start
+        if(key=='s'||key=='S')//press s to start
         {
             gameStart=true;
             gameStartTime=millis();
         }
-        else if(key=='1')
+        else if(key=='1')//press 1 to stop the music
         {
             song.pause();//song pause
         }
-        else if(key=='2')
+        else if(key=='2')//press 2 to play
         {
             song.play();//song play
         }
